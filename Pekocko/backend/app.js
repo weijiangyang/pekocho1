@@ -5,12 +5,21 @@ const bodyParser = require('body-parser');
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 const path = require('path');
+const helmet = require('helmet');
 
 mongoose.connect('mongodb+srv://weijiangyang:Ywj32559438@cluster0.6pe6i.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+app.use(helmet.hidePoweredBy());
+app.use(helmet.frameguard({action: 'deny'}));
+app.use(helmet.xssFilter({}));
+app.use(helmet.noSniff());
+app.use(helmet.ieNoOpen());
+var ninetyDaysInSeconds = 90*24*60*60;
+app.use(helmet.hsts({ maxAge: ninetyDaysInSeconds, force: true }));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
