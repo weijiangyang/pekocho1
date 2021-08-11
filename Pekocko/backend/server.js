@@ -1,6 +1,7 @@
 const http = require('http');
 const { path } = require('./app');
 const app = require('./app');
+const fs = require("fs");
 
 
 
@@ -41,6 +42,14 @@ const errorHandler = error => {
 };
 var https = require('https');
 const server = http.createServer(app);
+// var key = fs.readFileSync(__dirname + '/https/example.com+5-key.pem');
+// var cert = fs.readFileSync(__dirname + '/https/example.com+5.pem');
+// var options = {
+//   key: key,
+//   cert: cert
+// };
+
+// var server = https.createServer(options, app);
 
 
 
