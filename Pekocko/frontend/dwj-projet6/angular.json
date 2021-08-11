@@ -84,7 +84,8 @@
           
           "options": {
             "browserTarget": "the-hottest-reviews:build",
-            "ssl": true
+            "ssl" : true
+            
           },
           "configurations": {
             "production": {
